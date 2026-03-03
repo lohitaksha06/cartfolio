@@ -1,0 +1,9 @@
+{
+  "name": "cartfolio",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter @cartfolio/web dev",
+    "dev:backend": "pnpm --filter @cartfolio/backend dev"
+  }
+}

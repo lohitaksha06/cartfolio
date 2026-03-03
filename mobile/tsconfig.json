@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@cartfolio/shared": ["../shared/types/index.ts"]
+    }
+  },
+  "include": ["src", "index.ts"]
+}
