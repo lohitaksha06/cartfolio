@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import OrderDetail from "./pages/OrderDetail";
 import AddOrder from "./pages/AddOrder";
 import Settings from "./pages/Settings";
+import VendorDetail from "./pages/VendorDetail";
 import "./index.css";
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/" element={<Navigate to="/orders" replace />} />
             <Route path="/orders" element={<Home />} />
             <Route path="/orders/:id" element={<OrderDetail />} />
+            <Route path="/vendor/:vendor" element={<VendorDetail />} />
             <Route path="/add" element={<AddOrder />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>

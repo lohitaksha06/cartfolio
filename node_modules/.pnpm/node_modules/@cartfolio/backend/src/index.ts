@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import ordersRouter from "./routes/orders.js";
 import emailRouter from "./routes/email.js";
+import gmailRouter from "./routes/gmail.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.get("/health", (_req, res) => {
 // Routes
 app.use("/api/orders", ordersRouter);
 app.use("/api/email", emailRouter);
+app.use("/api/gmail", gmailRouter);
 
 // 404
 app.use((_req, res) => {

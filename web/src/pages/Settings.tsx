@@ -1,4 +1,55 @@
+import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
+import { api } from "../services/api";
+
 export default function Settings() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [gmailConnected, setGmailConnected] = useState(false);
+  const [scanning, setScanning] = useState(false);
+  const [scanResult, setScanResult] = useState<{ imported: number } | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  // Check Gmail status on mount & handle OAuth callback
+  useEffect(() => {
+    api.getGmailStatus().then((s) => setGmailConnected(s.connected));
+
+    if (searchParams.get("gmail") === "connected") {
+      api.connectGmail().then(() => {
+        setGmailConnected(true);
+        setSearchParams({}, { replace: true });
+      });
+    }
+  }, [searchParams, setSearchParams]);
+
+  const handleGmailConnect = useCallback(async () => {
+    const url = await api.getGmailAuthUrl();
+    window.location.href = url;
+  }, []);
+
+  const handleGmailDisconnect = useCallback(async () => {
+    await api.disconnectGmail();
+    setGmailConnected(false);
+    setScanResult(null);
+  }, []);
+
+  const handleScan = useCallback(async () => {
+    setScanning(true);
+    setScanResult(null);
+    try {
+      const result = await api.scanGmail();
+      setScanResult(result);
+    } finally {
+      setScanning(false);
+    }
+  }, []);
+
+  const copyEmail = useCallback(() => {
+    navigator.clipboard.writeText("orders@cartfolio.app");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
+
+  /* ── Sub-components ── */
   const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div
       style={{
@@ -70,8 +121,20 @@ export default function Settings() {
     </div>
   );
 
-  const PillBtn = ({ label, color = "var(--accent)" }: { label: string; color?: string }) => (
+  const PillBtn = ({
+    label,
+    color = "var(--accent)",
+    onClick,
+    disabled,
+  }: {
+    label: string;
+    color?: string;
+    onClick?: () => void;
+    disabled?: boolean;
+  }) => (
     <button
+      onClick={onClick}
+      disabled={disabled}
       style={{
         padding: "6px 14px",
         borderRadius: 99,
@@ -81,6 +144,8 @@ export default function Settings() {
         fontSize: 12,
         fontWeight: 600,
         whiteSpace: "nowrap",
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.5 : 1,
       }}
     >
       {label}
@@ -107,23 +172,66 @@ export default function Settings() {
               <div style={{ fontFamily: "monospace", fontSize: 12, color: "var(--accent)", marginBottom: 6 }}>
                 orders@cartfolio.app
               </div>
-              <PillBtn label="Copy address" />
+              <PillBtn label={copied ? "Copied!" : "Copy address"} onClick={copyEmail} />
             </div>
           }
         />
+
+        {/* Gmail OAuth — fully interactive */}
+        <Row
+          icon="📧"
+          title="Gmail Connect"
+          description={
+            gmailConnected
+              ? "Gmail connected — your order emails are being imported automatically."
+              : "Sign in with Google to auto-import order confirmations from your inbox."
+          }
+          badge={
+            gmailConnected
+              ? { label: "Connected", color: "#10B981" }
+              : { label: "Not connected", color: "#6B7280" }
+          }
+          action={
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              {gmailConnected && (
+                <>
+                  <PillBtn
+                    label={scanning ? "Scanning…" : "Scan now"}
+                    color="#6366f1"
+                    onClick={handleScan}
+                    disabled={scanning}
+                  />
+                  <PillBtn label="Disconnect" color="#EF4444" onClick={handleGmailDisconnect} />
+                </>
+              )}
+              {!gmailConnected && (
+                <PillBtn label="Connect Gmail" color="#4285F4" onClick={handleGmailConnect} />
+              )}
+            </div>
+          }
+        />
+        {scanResult && (
+          <div
+            style={{
+              marginLeft: 32,
+              padding: "8px 14px",
+              borderRadius: 8,
+              background: "#10B98120",
+              color: "#10B981",
+              fontSize: 13,
+              fontWeight: 500,
+            }}
+          >
+            Imported {scanResult.imported} new order{scanResult.imported !== 1 ? "s" : ""} from Gmail.
+          </div>
+        )}
+
         <Row
           icon="🔔"
           title="Android Notifications"
           description="Let Cartfolio read order notifications in real-time (Android only)"
           badge={{ label: "Coming soon", color: "#F59E0B" }}
-          action={<PillBtn label="Enable" color="#F59E0B" />}
-        />
-        <Row
-          icon="📧"
-          title="Gmail OAuth"
-          description="Connect Gmail to auto-import order emails without forwarding"
-          badge={{ label: "Coming soon", color: "#6B7280" }}
-          action={<PillBtn label="Connect" color="#6B7280" />}
+          action={<PillBtn label="Enable" color="#F59E0B" disabled />}
         />
       </Section>
 
@@ -165,6 +273,7 @@ export default function Settings() {
                 border: "1px solid #EF444433",
                 fontSize: 12,
                 fontWeight: 600,
+                cursor: "pointer",
               }}
             >
               Delete
