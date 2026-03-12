@@ -1,8 +1,8 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { parseEmail } from "../parsers/index.js";
-import { deduplicateOrder } from "../services/normalizer.js";
-import { store } from "../db/store.js";
+import { parseEmail } from "../parsers/index";
+import { deduplicateOrder } from "../services/normalizer";
+import { store } from "../db/store";
 
 const router = Router();
 

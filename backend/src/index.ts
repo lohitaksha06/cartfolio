@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import ordersRouter from "./routes/orders.js";
-import emailRouter from "./routes/email.js";
-import gmailRouter from "./routes/gmail.js";
+import ordersRouter from "./routes/orders";
+import emailRouter from "./routes/email";
+import gmailRouter from "./routes/gmail";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

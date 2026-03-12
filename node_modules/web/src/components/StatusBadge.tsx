@@ -1,6 +1,6 @@
-import type { OrderStatus } from "../../../../shared/types/index";
-import { STATUS_LABELS } from "../../../../shared/types/index";
-import { getStatusColor } from "../../../../shared/utils/formatters";
+import type { OrderStatus } from "@cartfolio/shared";
+import { STATUS_LABELS } from "@cartfolio/shared";
+import { getStatusColor } from "@cartfolio/shared/utils/formatters";
 
 interface Props {
   status: OrderStatus;

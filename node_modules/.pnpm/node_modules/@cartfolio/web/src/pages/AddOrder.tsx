@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Vendor, OrderStatus } from "../../../../shared/types/index";
-import { VENDOR_LABELS, CATEGORY_FOR_VENDOR } from "../../../../shared/types/index";
+import type { Vendor, OrderStatus } from "@cartfolio/shared";
+import { VENDOR_LABELS, CATEGORY_FOR_VENDOR } from "@cartfolio/shared";
 import { api } from "../services/api";
 
 const VENDORS: Vendor[] = ["AMAZON", "FLIPKART", "ZOMATO", "BLINKIT", "SWIGGY", "OTHER"];

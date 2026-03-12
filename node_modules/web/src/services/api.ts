@@ -1,4 +1,4 @@
-import type { Order, Vendor, OrderStatus } from "../../../shared/types/index";
+import type { Order, Vendor, OrderStatus } from "@cartfolio/shared";
 import { MOCK_ORDERS } from "../data/mockData";
 
 export interface OrderFilters {
@@ -154,7 +154,5 @@ export const api = {
       totalSpend: total,
       delivered: vendorOrders.filter((o) => o.status === "DELIVERED").length,
     };
-  },
-};
   },
 };

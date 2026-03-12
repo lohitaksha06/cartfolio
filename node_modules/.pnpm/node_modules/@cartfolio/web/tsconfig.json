@@ -16,7 +16,9 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@cartfolio/shared": ["../shared/types/index.ts"],
+      "@cartfolio/shared/*": ["../shared/*"]
     }
   },
   "include": ["src"]

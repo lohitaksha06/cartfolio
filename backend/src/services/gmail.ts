@@ -19,9 +19,9 @@
  *   GOOGLE_REDIRECT_URI   (e.g. http://localhost:3000/api/gmail/callback)
  */
 
-import type { Order } from "../../../../shared/types/index.js";
-import { parseEmail } from "../parsers/index.js";
-import type { RawEmail } from "../parsers/types.js";
+import type { Order } from "@cartfolio/shared";
+import { parseEmail } from "../parsers/index";
+import type { RawEmail } from "../parsers/types";
 
 // ─── Types ───────────────────────────────────────────────
 

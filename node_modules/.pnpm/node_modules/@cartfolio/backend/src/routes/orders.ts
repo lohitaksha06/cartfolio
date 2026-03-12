@@ -1,8 +1,8 @@
 import { Router } from "express";
 import type { Request, Response } from "express";
-import { store } from "../db/store.js";
-import type { Order, Vendor, OrderStatus } from "../../../shared/types/index.js";
-import { CATEGORY_FOR_VENDOR } from "../../../shared/types/index.js";
+import { store } from "../db/store";
+import type { Order, Vendor, OrderStatus } from "@cartfolio/shared";
+import { CATEGORY_FOR_VENDOR } from "@cartfolio/shared";
 
 const router = Router();
 

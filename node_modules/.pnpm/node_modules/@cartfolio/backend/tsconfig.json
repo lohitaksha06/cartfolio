@@ -9,7 +9,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "paths": {
+      "@cartfolio/shared": ["../shared/types/index.ts"],
+      "@cartfolio/shared/*": ["../shared/*"]
+    }
   },
   "include": ["src"]
 }

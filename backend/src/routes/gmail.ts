@@ -3,9 +3,9 @@ import type { Request, Response } from "express";
 import {
   exchangeCodeForTokens,
   scanGmailForOrders,
-} from "../services/gmail.js";
-import { deduplicateOrder } from "../services/normalizer.js";
-import { store } from "../db/store.js";
+} from "../services/gmail";
+import { deduplicateOrder } from "../services/normalizer";
+import { store } from "../db/store";
 
 const router = Router();
 

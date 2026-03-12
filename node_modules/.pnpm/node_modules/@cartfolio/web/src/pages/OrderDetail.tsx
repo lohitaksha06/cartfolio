@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import type { Order } from "../../../../shared/types/index";
-import { formatCurrency, formatDate } from "../../../../shared/utils/formatters";
+import type { Order } from "@cartfolio/shared";
+import { formatCurrency, formatDate } from "@cartfolio/shared/utils/formatters";
 import { api } from "../services/api";
 import VendorBadge from "../components/VendorBadge";
 import StatusBadge from "../components/StatusBadge";

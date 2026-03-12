@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import type { Order, Vendor } from "../../../../shared/types/index";
-import { VENDOR_LABELS, VENDOR_COLORS } from "../../../../shared/types/index";
-import { formatCurrency } from "../../../../shared/utils/formatters";
+import type { Order, Vendor } from "@cartfolio/shared";
+import { VENDOR_LABELS, VENDOR_COLORS } from "@cartfolio/shared";
+import { formatCurrency } from "@cartfolio/shared/utils/formatters";
 import { api } from "../services/api";
 import OrderCard from "../components/OrderCard";
 import EmptyState from "../components/EmptyState";

@@ -3,8 +3,9 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@cartfolio/shared": ["../shared/types/index.ts"]
+      "@cartfolio/shared": ["../shared/types/index.ts"],
+      "@cartfolio/shared/*": ["../shared/*"]
     }
   },
-  "include": ["src", "index.ts"]
+  "include": ["src", "App.tsx"]
 }

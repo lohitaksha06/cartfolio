@@ -1,4 +1,4 @@
-import type { Order } from "../../../shared/types/index";
+import type { Order } from "@cartfolio/shared";
 
 export const MOCK_ORDERS: Order[] = [
   {

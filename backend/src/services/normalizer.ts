@@ -1,4 +1,4 @@
-import type { Order } from "../../../../shared/types/index.js";
+import type { Order } from "@cartfolio/shared";
 
 /**
  * Deduplication logic.

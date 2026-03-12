@@ -1,5 +1,5 @@
-import type { Order, OrderStatus } from "../../../../shared/types/index.js";
-import type { RawEmail } from "./types.js";
+import type { Order, OrderStatus } from "@cartfolio/shared";
+import type { RawEmail } from "./types";
 
 export function isBlinkitEmail(email: RawEmail): boolean {
   return (

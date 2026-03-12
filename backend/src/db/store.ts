@@ -3,7 +3,7 @@
  * Replace the arrays + functions here with Supabase client calls.
  */
 
-import type { Order } from "../../../shared/types/index.js";
+import type { Order } from "@cartfolio/shared";
 
 const orders: Order[] = [];
 

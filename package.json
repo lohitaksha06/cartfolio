@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev:web": "pnpm --filter @cartfolio/web dev",
-    "dev:backend": "pnpm --filter @cartfolio/backend dev"
+    "dev:backend": "pnpm --filter @cartfolio/backend dev",
+    "dev:mobile": "pnpm --filter @cartfolio/mobile start"
   }
 }

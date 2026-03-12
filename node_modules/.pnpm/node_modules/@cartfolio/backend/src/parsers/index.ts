@@ -1,9 +1,9 @@
-import type { Order } from "../../../../shared/types/index.js";
-import type { RawEmail } from "./types.js";
-import { isAmazonEmail, parseAmazonEmail } from "./amazon.js";
-import { isFlipkartEmail, parseFlipkartEmail } from "./flipkart.js";
-import { isZomatoEmail, parseZomatoEmail } from "./zomato.js";
-import { isBlinkitEmail, parseBlinkitEmail } from "./blinkit.js";
+import type { Order } from "@cartfolio/shared";
+import type { RawEmail } from "./types";
+import { isAmazonEmail, parseAmazonEmail } from "./amazon";
+import { isFlipkartEmail, parseFlipkartEmail } from "./flipkart";
+import { isZomatoEmail, parseZomatoEmail } from "./zomato";
+import { isBlinkitEmail, parseBlinkitEmail } from "./blinkit";
 
 /**
  * Dispatch an incoming email to the correct vendor parser.
@@ -17,7 +17,7 @@ export function parseEmail(email: RawEmail): Order | null {
   return null;
 }
 
-export { isAmazonEmail, parseAmazonEmail } from "./amazon.js";
-export { isFlipkartEmail, parseFlipkartEmail } from "./flipkart.js";
-export { isZomatoEmail, parseZomatoEmail } from "./zomato.js";
-export { isBlinkitEmail, parseBlinkitEmail } from "./blinkit.js";
+export { isAmazonEmail, parseAmazonEmail } from "./amazon";
+export { isFlipkartEmail, parseFlipkartEmail } from "./flipkart";
+export { isZomatoEmail, parseZomatoEmail } from "./zomato";
+export { isBlinkitEmail, parseBlinkitEmail } from "./blinkit";

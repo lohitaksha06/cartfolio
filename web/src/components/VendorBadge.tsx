@@ -1,5 +1,5 @@
-import type { Vendor } from "../../../../shared/types/index";
-import { VENDOR_LABELS, VENDOR_COLORS } from "../../../../shared/types/index";
+import type { Vendor } from "@cartfolio/shared";
+import { VENDOR_LABELS, VENDOR_COLORS } from "@cartfolio/shared";
 
 const VENDOR_EMOJIS: Record<Vendor, string> = {
   AMAZON: "📦",

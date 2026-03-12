@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import type { Order } from "../../../../shared/types/index";
-import { formatCurrency, formatRelativeDate } from "../../../../shared/utils/formatters";
+import type { Order } from "@cartfolio/shared";
+import { formatCurrency, formatRelativeDate } from "@cartfolio/shared/utils/formatters";
 import VendorBadge from "./VendorBadge";
 import StatusBadge from "./StatusBadge";
 
