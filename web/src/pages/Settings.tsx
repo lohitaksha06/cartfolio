@@ -80,13 +80,11 @@ export default function Settings() {
   );
 
   const Row = ({
-    icon,
     title,
     description,
     badge,
     action,
   }: {
-    icon: string;
     title: string;
     description: string;
     badge?: { label: string; color: string };
@@ -94,7 +92,6 @@ export default function Settings() {
   }) => (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
       <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-        <span style={{ fontSize: 20, lineHeight: 1 }}>{icon}</span>
         <div>
           <div style={{ fontSize: 14, fontWeight: 500, marginBottom: 2, display: "flex", alignItems: "center", gap: 8 }}>
             {title}
@@ -163,7 +160,6 @@ export default function Settings() {
 
       <Section title="Data Sources">
         <Row
-          icon="✉️"
           title="Email Forwarding"
           description="Forward order confirmation emails to orders@cartfolio.app"
           badge={{ label: "Active", color: "#10B981" }}
@@ -179,7 +175,6 @@ export default function Settings() {
 
         {/* Gmail OAuth — fully interactive */}
         <Row
-          icon="📧"
           title="Gmail Connect"
           description={
             gmailConnected
@@ -227,7 +222,6 @@ export default function Settings() {
         )}
 
         <Row
-          icon="🔔"
           title="Android Notifications"
           description="Let Cartfolio read order notifications in real-time (Android only)"
           badge={{ label: "Coming soon", color: "#F59E0B" }}
@@ -237,15 +231,14 @@ export default function Settings() {
 
       <Section title="Supported Vendors">
         {[
-          { name: "Amazon", emoji: "📦", status: "Parsing active", color: "#FF9900" },
-          { name: "Flipkart", emoji: "🛍️", status: "Parsing active", color: "#2874F0" },
-          { name: "Zomato", emoji: "🍽️", status: "Parsing active", color: "#E23744" },
-          { name: "Blinkit", emoji: "⚡", status: "Parsing active", color: "#0C831F" },
-          { name: "Swiggy", emoji: "🧡", status: "Coming soon", color: "#6B7280" },
+          { name: "Amazon", status: "Parsing active", color: "#FF9900" },
+          { name: "Flipkart", status: "Parsing active", color: "#2874F0" },
+          { name: "Zomato", status: "Parsing active", color: "#E23744" },
+          { name: "Blinkit", status: "Parsing active", color: "#0C831F" },
+          { name: "Swiggy", status: "Coming soon", color: "#6B7280" },
         ].map((v) => (
           <Row
             key={v.name}
-            icon={v.emoji}
             title={v.name}
             description={v.status}
             badge={{ label: v.status === "Coming soon" ? "Soon" : "On", color: v.color }}
@@ -255,12 +248,10 @@ export default function Settings() {
 
       <Section title="Privacy & Data">
         <Row
-          icon="🔒"
           title="Your data stays yours"
           description="Cartfolio never connects to retailer APIs or reads your inbox without permission."
         />
         <Row
-          icon="🗑️"
           title="Delete all data"
           description="Permanently remove all orders and account data."
           action={

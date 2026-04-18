@@ -1,15 +1,6 @@
 import type { Vendor } from "@cartfolio/shared";
 import { VENDOR_LABELS, VENDOR_COLORS } from "@cartfolio/shared";
 
-const VENDOR_EMOJIS: Record<Vendor, string> = {
-  AMAZON: "📦",
-  FLIPKART: "🛍️",
-  ZOMATO: "🍽️",
-  BLINKIT: "⚡",
-  SWIGGY: "🧡",
-  OTHER: "🏪",
-};
-
 interface Props {
   vendor: Vendor;
   size?: "sm" | "md";
@@ -33,7 +24,7 @@ export default function VendorBadge({ vendor, size = "md" }: Props) {
         border: `1px solid ${color}33`,
       }}
     >
-      {VENDOR_EMOJIS[vendor]} {VENDOR_LABELS[vendor]}
+      {VENDOR_LABELS[vendor]}
     </span>
   );
 }

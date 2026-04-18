@@ -7,10 +7,6 @@ import { api } from "../services/api";
 import OrderCard from "../components/OrderCard";
 import EmptyState from "../components/EmptyState";
 
-const VENDOR_EMOJIS: Record<Vendor, string> = {
-  AMAZON: "📦", FLIPKART: "🛍️", ZOMATO: "🍽️", BLINKIT: "⚡", SWIGGY: "🧡", OTHER: "🏪",
-};
-
 export default function VendorDetail() {
   const { vendor } = useParams<{ vendor: string }>();
   const navigate = useNavigate();
@@ -54,7 +50,6 @@ export default function VendorDetail() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <span style={{ fontSize: 40 }}>{VENDOR_EMOJIS[v]}</span>
           <div>
             <h1 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>{VENDOR_LABELS[v]}</h1>
             <p style={{ color: "var(--text-secondary)", fontSize: 13, margin: "4px 0 0" }}>

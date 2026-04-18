@@ -33,7 +33,7 @@ export default function OrderDetail() {
   if (!order) {
     return (
       <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center", paddingTop: 80 }}>
-        <p style={{ fontSize: 48 }}>🔍</p>
+        <p style={{ fontSize: 24, fontWeight: 600 }}>Not found</p>
         <p style={{ color: "var(--text-secondary)", marginTop: 12 }}>Order not found.</p>
       </div>
     );

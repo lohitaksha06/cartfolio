@@ -84,7 +84,7 @@ export default function OrderCard({ order }: Props) {
             fontWeight: 500,
           }}
         >
-          🚚 {order.tracking.last_status}
+          {order.tracking.last_status}
           {order.tracking.estimated_delivery && (
             <span style={{ color: "var(--text-muted)", fontWeight: 400 }}>
               {" "}· ETA {new Date(order.tracking.estimated_delivery).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}

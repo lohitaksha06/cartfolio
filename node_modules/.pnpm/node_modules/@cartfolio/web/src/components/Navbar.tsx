@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 const links = [
-  { to: "/orders", label: "Orders", icon: "📦" },
-  { to: "/add", label: "Add Order", icon: "➕" },
-  { to: "/settings", label: "Settings", icon: "⚙️" },
+  { to: "/orders", label: "Orders" },
+  { to: "/add", label: "Add Order" },
+  { to: "/settings", label: "Settings" },
 ];
 
 const vendors = [
-  { to: "/vendor/amazon", label: "Amazon", icon: "📦", color: "#FF9900" },
-  { to: "/vendor/flipkart", label: "Flipkart", icon: "🛍️", color: "#2874F0" },
-  { to: "/vendor/zomato", label: "Zomato", icon: "🍽️", color: "#E23744" },
-  { to: "/vendor/blinkit", label: "Blinkit", icon: "⚡", color: "#0C831F" },
+  { to: "/vendor/amazon", label: "Amazon", color: "#FF9900" },
+  { to: "/vendor/flipkart", label: "Flipkart", color: "#2874F0" },
+  { to: "/vendor/zomato", label: "Zomato", color: "#E23744" },
+  { to: "/vendor/blinkit", label: "Blinkit", color: "#0C831F" },
 ];
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
       {/* Logo */}
       <div style={{ marginBottom: 32, paddingLeft: 8 }}>
         <span style={{ fontSize: 22, fontWeight: 700, color: "var(--text-primary)" }}>
-          🛒 Cartfolio
+          Cartfolio
         </span>
       </div>
 
@@ -52,7 +52,6 @@ export default function Navbar() {
               transition: "all 0.15s",
             })}
           >
-            <span>{l.icon}</span>
             {l.label}
           </NavLink>
         ))}
@@ -81,7 +80,6 @@ export default function Navbar() {
                 transition: "all 0.15s",
               })}
             >
-              <span style={{ fontSize: 15 }}>{v.icon}</span>
               {v.label}
             </NavLink>
           ))}

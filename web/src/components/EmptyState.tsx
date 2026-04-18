@@ -15,7 +15,6 @@ export default function EmptyState({ message = "No orders found" }: Props) {
         color: "var(--text-muted)",
       }}
     >
-      <span style={{ fontSize: 48 }}>📭</span>
       <p style={{ fontSize: 15 }}>{message}</p>
     </div>
   );
