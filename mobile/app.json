@@ -4,19 +4,24 @@
     "slug": "cartfolio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#0f0f11"
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#0f0f11"
-      },
       "package": "app.cartfolio.mobile"
     },
     "scheme": "cartfolio",
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "extra": {
+      "eas": {
+        "projectId": "62f52f6c-07a9-48a7-a1cd-d95e319c10ba"
+      }
+    },
+    "owner": "lohitaksha06",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
