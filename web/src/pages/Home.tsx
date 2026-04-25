@@ -21,6 +21,15 @@ const RECOMMENDATION_CATALOG: Array<{ id: string; name: string; vendor: Vendor; 
   { id: "rec_10", name: "Paneer Tikka Bowl", vendor: "ZOMATO", price: 329 },
 ];
 
+const VENDOR_SEARCH_URL: Record<Vendor, (query: string) => string> = {
+  AMAZON: (q) => `https://www.amazon.in/s?k=${encodeURIComponent(q)}`,
+  FLIPKART: (q) => `https://www.flipkart.com/search?q=${encodeURIComponent(q)}`,
+  ZOMATO: (q) => `https://www.zomato.com/search?q=${encodeURIComponent(q)}`,
+  BLINKIT: (q) => `https://blinkit.com/s/?q=${encodeURIComponent(q)}`,
+  SWIGGY: (q) => `https://www.swiggy.com/search?query=${encodeURIComponent(q)}`,
+  OTHER: (q) => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
+};
+
 function tokenize(input: string): string[] {
   return input
     .toLowerCase()
@@ -111,6 +120,18 @@ export default function Home() {
 
     return scored;
   }, [search, recentSearches, allOrders, activeVendor]);
+
+  const openRecommendation = (vendor: Vendor, itemName: string) => {
+    const vendorLabel = VENDOR_LABELS[vendor];
+    const confirmed = window.confirm(
+      `Do you want to open ${vendorLabel} app/website for \"${itemName}\"?`
+    );
+
+    if (!confirmed) return;
+
+    const urlBuilder = VENDOR_SEARCH_URL[vendor] ?? VENDOR_SEARCH_URL.OTHER;
+    window.open(urlBuilder(itemName), "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div
@@ -263,11 +284,13 @@ export default function Home() {
             {recommendations.map((item) => (
               <div
                 key={item.id}
+                onClick={() => openRecommendation(item.vendor, item.name)}
                 style={{
                   background: "#1c1c22",
                   border: "1px solid var(--border)",
                   borderRadius: 10,
                   padding: "10px 11px",
+                  cursor: "pointer",
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
