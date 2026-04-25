@@ -8,6 +8,21 @@ export interface OrderFilters {
 }
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const VENDOR_CONNECTIONS_KEY = "cartfolio_vendor_connections";
+
+function readVendorConnections(): Partial<Record<Vendor, boolean>> {
+  try {
+    const raw = localStorage.getItem(VENDOR_CONNECTIONS_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw) as Partial<Record<Vendor, boolean>>;
+  } catch {
+    return {};
+  }
+}
+
+function writeVendorConnections(connections: Partial<Record<Vendor, boolean>>) {
+  localStorage.setItem(VENDOR_CONNECTIONS_KEY, JSON.stringify(connections));
+}
 
 export const api = {
   async getOrders(filters?: OrderFilters): Promise<Order[]> {
@@ -154,5 +169,21 @@ export const api = {
       totalSpend: total,
       delivered: vendorOrders.filter((o) => o.status === "DELIVERED").length,
     };
+  },
+
+  // ─── Vendor connection onboarding (mock) ──────────────
+
+  async getVendorConnectionStatus(vendor: Vendor): Promise<{ connected: boolean }> {
+    await delay(150);
+    const map = readVendorConnections();
+    return { connected: !!map[vendor] };
+  },
+
+  async connectVendor(vendor: Vendor): Promise<{ connected: boolean }> {
+    await delay(500);
+    const map = readVendorConnections();
+    map[vendor] = true;
+    writeVendorConnections(map);
+    return { connected: true };
   },
 };

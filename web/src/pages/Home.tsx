@@ -30,7 +30,7 @@ export default function Home() {
   }, [activeVendor, search]);
 
   return (
-    <div style={{ maxWidth: 780, margin: "0 auto" }}>
+    <div style={{ maxWidth: 1040, margin: "0" }}>
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 4 }}>Your Orders</h1>

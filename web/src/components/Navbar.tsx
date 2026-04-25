@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 
 const links = [
+  { to: "/dashboard", label: "Dashboard" },
   { to: "/orders", label: "Orders" },
   { to: "/add", label: "Add Order" },
+  { to: "/about", label: "About" },
   { to: "/settings", label: "Settings" },
 ];
 
@@ -17,18 +19,19 @@ export default function Navbar() {
   return (
     <nav
       style={{
-        width: 220,
-        background: "var(--bg-card)",
-        borderRight: "1px solid var(--border)",
+        width: 290,
+        background: "linear-gradient(180deg, #18181b 0%, #15151a 100%)",
+        borderRight: "1px solid #2f2f36",
+        boxShadow: "inset -1px 0 0 #2f2f36, 8px 0 24px rgba(0,0,0,0.28)",
         display: "flex",
         flexDirection: "column",
-        padding: "24px 16px",
+        padding: "28px 18px",
         flexShrink: 0,
       }}
     >
       {/* Logo */}
-      <div style={{ marginBottom: 32, paddingLeft: 8 }}>
-        <span style={{ fontSize: 22, fontWeight: 700, color: "var(--text-primary)" }}>
+      <div style={{ marginBottom: 34, paddingLeft: 8 }}>
+        <span style={{ fontSize: 32, fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
           Cartfolio
         </span>
       </div>
@@ -45,10 +48,11 @@ export default function Navbar() {
               gap: 10,
               padding: "10px 12px",
               borderRadius: "var(--radius-sm)",
-              fontSize: 14,
-              fontWeight: 500,
+              fontSize: 16,
+              fontWeight: 600,
               color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
-              background: isActive ? "var(--bg-card-hover)" : "transparent",
+              background: isActive ? "#22222b" : "transparent",
+              border: isActive ? "1px solid #343441" : "1px solid transparent",
               transition: "all 0.15s",
             })}
           >
@@ -58,7 +62,7 @@ export default function Navbar() {
       </div>
 
       {/* Vendor shortcuts */}
-      <div style={{ marginTop: 24 }}>
+      <div style={{ marginTop: 28 }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", paddingLeft: 12, marginBottom: 8 }}>
           Apps
         </div>
@@ -73,10 +77,11 @@ export default function Navbar() {
                 gap: 10,
                 padding: "8px 12px",
                 borderRadius: "var(--radius-sm)",
-                fontSize: 13,
+                fontSize: 14,
                 fontWeight: 500,
                 color: isActive ? v.color : "var(--text-secondary)",
                 background: isActive ? `${v.color}12` : "transparent",
+                border: isActive ? `1px solid ${v.color}44` : "1px solid transparent",
                 transition: "all 0.15s",
               })}
             >

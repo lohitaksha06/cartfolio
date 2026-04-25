@@ -13,18 +13,32 @@ export default function VendorDetail() {
   const v = (vendor?.toUpperCase() || "OTHER") as Vendor;
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [connected, setConnected] = useState(false);
+  const [connecting, setConnecting] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    api.getOrders({ vendor: v }).then((data) => {
+    Promise.all([api.getOrders({ vendor: v }), api.getVendorConnectionStatus(v)]).then(([data, connection]) => {
       setOrders(data);
+      setConnected(connection.connected);
       setLoading(false);
     });
   }, [v]);
 
+  const handleConnect = async () => {
+    setConnecting(true);
+    try {
+      const status = await api.connectVendor(v);
+      setConnected(status.connected);
+    } finally {
+      setConnecting(false);
+    }
+  };
+
   const totalSpent = orders.reduce((s, o) => s + o.total_amount, 0);
   const delivered = orders.filter((o) => o.status === "DELIVERED").length;
   const color = VENDOR_COLORS[v] || "#6B7280";
+  const canConnect = v !== "OTHER";
 
   return (
     <div style={{ maxWidth: 780, margin: "0 auto" }}>
@@ -64,6 +78,67 @@ export default function VendorDetail() {
           <div style={{ fontSize: 26, fontWeight: 700, color }}>{formatCurrency(totalSpent)}</div>
         </div>
       </div>
+
+      {canConnect && !connected && (
+        <div
+          style={{
+            background: "var(--bg-card)",
+            border: "1px solid var(--border)",
+            borderRadius: "var(--radius)",
+            padding: "18px 20px",
+            marginBottom: 20,
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text-primary)", marginBottom: 4 }}>
+              Welcome. Do you want to connect your {VENDOR_LABELS[v]} account?
+            </div>
+            <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>
+              Connect to auto-import new orders and delivery updates.
+            </div>
+          </div>
+          <button
+            onClick={handleConnect}
+            disabled={connecting}
+            style={{
+              background: color,
+              color: "#fff",
+              border: "none",
+              borderRadius: 8,
+              padding: "10px 14px",
+              fontSize: 13,
+              fontWeight: 600,
+              cursor: connecting ? "not-allowed" : "pointer",
+              opacity: connecting ? 0.7 : 1,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {connecting ? "Connecting..." : `Connect ${VENDOR_LABELS[v]}`}
+          </button>
+        </div>
+      )}
+
+      {canConnect && connected && (
+        <div
+          style={{
+            marginBottom: 20,
+            fontSize: 13,
+            color: color,
+            background: `${color}14`,
+            border: `1px solid ${color}33`,
+            borderRadius: 8,
+            padding: "8px 12px",
+            display: "inline-flex",
+            fontWeight: 600,
+          }}
+        >
+          {VENDOR_LABELS[v]} connected
+        </div>
+      )}
 
       {/* Status tabs */}
       <div style={{ display: "flex", gap: 12, marginBottom: 20 }}>
