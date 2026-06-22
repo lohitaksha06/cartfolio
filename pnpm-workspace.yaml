@@ -3,3 +3,5 @@ packages:
   - "web"
   - "backend"
   - "shared"
+allowBuilds:
+  esbuild: true
